@@ -1758,9 +1758,21 @@
             },
             {
               "condition": "AND",
-              "key": "proxy",
+              "key": "sv",
               "operator": "=",
-              "value": "https-WAN-merged"
+              "value": "FRONTEND"
+            },
+            {
+              "condition": "AND",
+              "key": "intercepted",
+              "operator": "<",
+              "value": "1"
+            },
+            {
+              "condition": "AND",
+              "key": "proxy",
+              "operator": "!~",
+              "value": "stats"
             }
           ]
         }
