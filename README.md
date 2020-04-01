@@ -57,7 +57,7 @@ services:
       - GF_SERVER_ROOT_URL=http://localhost
       - GF_SERVER_HTTP_PORT=3000
       - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Editor
 #      - GF_SERVER_CERT_FILE=/tmp/crt
 #      - GF_SERVER_CERT_KEY=/tmp/key
 #      - GF_SERVER_PROTOCOL=https
