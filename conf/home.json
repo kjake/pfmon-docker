@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 2,
-  "iteration": 1585750088370,
+  "iteration": 1585751250928,
   "links": [],
   "panels": [
     {
@@ -168,7 +168,7 @@
                 }
               ]
             },
-            "title": "Ram",
+            "title": "RAM",
             "unit": "percent"
           },
           "overrides": [],
@@ -1721,7 +1721,7 @@
             [
               {
                 "params": [
-                  "IPEvaluated"
+                  "action"
                 ],
                 "type": "field"
               },
@@ -1736,6 +1736,18 @@
               "key": "host",
               "operator": "=~",
               "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "action",
+              "operator": "=",
+              "value": "block"
+            },
+            {
+              "condition": "AND",
+              "key": "Dir",
+              "operator": "=",
+              "value": "in"
             }
           ]
         }
@@ -2524,7 +2536,6 @@
     "list": [
       {
         "allValue": null,
-        "current": {},
         "datasource": "InfluxDB",
         "definition": "SHOW TAG VALUES FROM system WITH KEY=host",
         "hide": 0,
