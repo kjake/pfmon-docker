@@ -1,34 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "wan_interface",
-      "type": "constant",
-      "label": "WAN Inteface",
-      "value": "vmx1",
-      "description": "Put here name of your WAN interface"
-    },
-    {
-      "name": "lan_interface",
-      "type": "constant",
-      "label": "LAN Inteface",
-      "value": "vmx0",
-      "description": "Put here name of your LAN interface"
-    },
-    {
-      "name": "wlan_interface",
-      "type": "constant",
-      "label": "WLAN Inteface",
-      "value": "vmx0.90",
-      "description": "Put here name of your WLAN interface"
-    },
-    {
-      "name": "iot_interface",
-      "type": "constant",
-      "label": "IOT Inteface",
-      "value": "vmx0.80",
-      "description": "Put here name of your IOT interface"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -46,6 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 2,
+  "iteration": 1585750088370,
   "links": [],
   "panels": [
     {
@@ -926,80 +897,65 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorPrefix": false,
-      "colorValue": false,
-      "colors": [
-        "#73BF69",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": "InfluxDB",
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
       "gridPos": {
         "h": 3,
         "w": 3,
         "x": 0,
         "y": 8
       },
-      "id": 23,
-      "interval": null,
+      "id": 32,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "defaults": {
+            "mappings": [
+              {
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": [],
+          "values": false
         },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.1",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal"
       },
-      "tableColumn": "",
+      "pluginVersion": "6.7.1",
       "targets": [
         {
+          "alias": "Sesion",
           "groupBy": [],
-          "measurement": "extip",
+          "measurement": "haproxy",
           "orderByTime": "ASC",
           "policy": "autogen",
           "refId": "A",
-          "resultFormat": "table",
+          "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "externalIP"
+                  "scur"
                 ],
                 "type": "field"
               }
@@ -1010,24 +966,32 @@
               "key": "host",
               "operator": "=~",
               "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "sv",
+              "operator": "=",
+              "value": "FRONTEND"
+            },
+            {
+              "condition": "AND",
+              "key": "intercepted",
+              "operator": "<",
+              "value": "1"
+            },
+            {
+              "condition": "AND",
+              "key": "proxy",
+              "operator": "!~",
+              "value": "/stats/"
             }
           ]
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "IP",
-      "type": "singlestat",
-      "valueFontSize": "70%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "title": "HAProxy Front Session",
+      "type": "stat"
     },
     {
       "cacheTimeout": null,
@@ -1598,7 +1562,7 @@
           "measurement": "net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" =~ /^$server$/ AND \"interface\" =~ /^$wan_interface$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" =~ /^$server$/ AND \"interface\" =~ /^$lan_interface$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
@@ -1647,7 +1611,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "LAN Admin",
+      "title": "LAN",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1686,56 +1650,69 @@
     },
     {
       "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
       "datasource": "InfluxDB",
+      "format": "short",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
         "h": 3,
         "w": 3,
         "x": 0,
         "y": 11
       },
-      "id": 32,
+      "id": 33,
+      "interval": null,
       "links": [],
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "defaults": {
-            "mappings": [
-              {
-                "id": 0,
-                "op": "=",
-                "text": "N/A",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "short"
-          },
-          "overrides": [],
-          "values": false
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
         },
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
       },
-      "pluginVersion": "6.7.1",
+      "tableColumn": "",
       "targets": [
         {
-          "alias": "Sesion",
           "groupBy": [],
-          "measurement": "haproxy",
+          "measurement": "ip_block_log",
           "orderByTime": "ASC",
           "policy": "autogen",
           "refId": "A",
@@ -1744,9 +1721,13 @@
             [
               {
                 "params": [
-                  "scur"
+                  "IPEvaluated"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "count"
               }
             ]
           ],
@@ -1755,32 +1736,24 @@
               "key": "host",
               "operator": "=~",
               "value": "/^$server$/"
-            },
-            {
-              "condition": "AND",
-              "key": "sv",
-              "operator": "=",
-              "value": "FRONTEND"
-            },
-            {
-              "condition": "AND",
-              "key": "intercepted",
-              "operator": "<",
-              "value": "1"
-            },
-            {
-              "condition": "AND",
-              "key": "proxy",
-              "operator": "!~",
-              "value": "/stats/"
             }
           ]
         }
       ],
+      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "HAProxy Front Session",
-      "type": "stat"
+      "title": "IP Block",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -2193,7 +2166,7 @@
           "measurement": "net",
           "orderByTime": "ASC",
           "policy": "autogen",
-          "query": "SELECT derivative(mean(\"bytes_recv\"), 1s)  *-1 FROM \"autogen\".\"net\" WHERE (\"host\" =~ /^$server$/ AND \"interface\" =~ /^$wan_interface$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT derivative(mean(\"bytes_recv\"), 1s)  *-1 FROM \"autogen\".\"net\" WHERE (\"host\" =~ /^$server$/ AND \"interface\" =~ /^$wlan_interface$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": false,
           "refId": "C",
           "resultFormat": "time_series",
@@ -2456,7 +2429,7 @@
           "measurement": "net",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" =~ /^$server$/ AND \"interface\" =~ /^$wan_interface$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT derivative(mean(\"bytes_sent\"), 1s) FROM \"net\" WHERE (\"host\" =~ /^$server$/ AND \"interface\" =~ /^$iot_interface$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
@@ -2505,7 +2478,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "WLAN IOT",
+      "title": "IOT",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2556,6 +2529,7 @@
         "definition": "SHOW TAG VALUES FROM system WITH KEY=host",
         "hide": 0,
         "includeAll": false,
+        "index": -1,
         "label": "Server",
         "multi": false,
         "name": "server",
@@ -2574,21 +2548,19 @@
       {
         "allValue": null,
         "current": {
-          "value": "/^$wan_interface$/",
-          "text": "/^$wan_interface$/"
+          "selected": true,
+          "text": "vmx1",
+          "value": "vmx1"
         },
         "datasource": "InfluxDB",
+        "definition": "",
         "hide": 0,
         "includeAll": false,
+        "index": -1,
         "label": "WAN Inteface",
+        "multi": false,
         "name": "wan_interface",
-        "options": [
-          {
-            "selected": true,
-            "value": "/^$wan_interface$/",
-            "text": "/^$wan_interface$/"
-          }
-        ],
+        "options": [],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE host =~ /$server/",
         "refresh": 1,
         "regex": "^(?!.*veth|all|tap).*$",
@@ -2603,21 +2575,19 @@
       {
         "allValue": null,
         "current": {
-          "value": "/^$lan_interface$/",
-          "text": "/^$lan_interface$/"
+          "selected": true,
+          "text": "vmx0",
+          "value": "vmx0"
         },
         "datasource": "InfluxDB",
+        "definition": "",
         "hide": 0,
         "includeAll": false,
+        "index": -1,
         "label": "LAN Inteface",
+        "multi": false,
         "name": "lan_interface",
-        "options": [
-          {
-            "selected": true,
-            "value": "/^$lan_interface$/",
-            "text": "/^$lan_interface$/"
-          }
-        ],
+        "options": [],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE host =~ /$server/",
         "refresh": 1,
         "regex": "^(?!.*veth|all|tap).*$",
@@ -2632,21 +2602,19 @@
       {
         "allValue": null,
         "current": {
-          "value": "/^$wlan_interface$/",
-          "text": "/^$wlan_interface$/"
+          "selected": true,
+          "text": "vmx0.90",
+          "value": "vmx0.90"
         },
         "datasource": "InfluxDB",
+        "definition": "",
         "hide": 0,
         "includeAll": false,
+        "index": -1,
         "label": "WLAN Inteface",
+        "multi": false,
         "name": "wlan_interface",
-        "options": [
-          {
-            "selected": true,
-            "value": "/^$wlan_interface$/",
-            "text": "/^$wlan_interface$/"
-          }
-        ],
+        "options": [],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE host =~ /$server/",
         "refresh": 1,
         "regex": "^(?!.*veth|all|tap).*$",
@@ -2661,21 +2629,19 @@
       {
         "allValue": null,
         "current": {
-          "value": "/^$iot_interface$/",
-          "text": "/^$iot_interface$/"
+          "selected": true,
+          "text": "vmx0.80",
+          "value": "vmx0.80"
         },
         "datasource": "InfluxDB",
+        "definition": "",
         "hide": 0,
         "includeAll": false,
+        "index": -1,
         "label": "IOT Inteface",
+        "multi": false,
         "name": "iot_interface",
-        "options": [
-          {
-            "selected": true,
-            "value": "/^$iot_interface$/",
-            "text": "/^$iot_interface$/"
-          }
-        ],
+        "options": [],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE host =~ /$server/",
         "refresh": 1,
         "regex": "^(?!.*veth|all|tap).*$",
@@ -2710,5 +2676,8 @@
   "timezone": "browser",
   "title": "pfSense",
   "uid": "t_qMZwrWk",
+  "variables": {
+    "list": []
+  },
   "version": 20
 }
