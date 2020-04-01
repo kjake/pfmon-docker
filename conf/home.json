@@ -1772,7 +1772,7 @@
               "condition": "AND",
               "key": "proxy",
               "operator": "!~",
-              "value": "stats"
+              "value": "/stats/"
             }
           ]
         }
