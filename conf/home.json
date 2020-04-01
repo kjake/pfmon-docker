@@ -2582,7 +2582,13 @@
         "includeAll": false,
         "label": "WAN Inteface",
         "name": "wan_interface",
-        "options": [],
+        "options": [
+          {
+            "selected": true,
+            "value": "/^$wan_interface$/",
+            "text": "/^$wan_interface$/"
+          }
+        ],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE host =~ /$server/",
         "refresh": 1,
         "regex": "^(?!.*veth|all|tap).*$",
@@ -2605,7 +2611,13 @@
         "includeAll": false,
         "label": "LAN Inteface",
         "name": "lan_interface",
-        "options": [],
+        "options": [
+          {
+            "selected": true,
+            "value": "/^$lan_interface$/",
+            "text": "/^$lan_interface$/"
+          }
+        ],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE host =~ /$server/",
         "refresh": 1,
         "regex": "^(?!.*veth|all|tap).*$",
@@ -2628,7 +2640,13 @@
         "includeAll": false,
         "label": "WLAN Inteface",
         "name": "wlan_interface",
-        "options": [],
+        "options": [
+          {
+            "selected": true,
+            "value": "/^$wlan_interface$/",
+            "text": "/^$wlan_interface$/"
+          }
+        ],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE host =~ /$server/",
         "refresh": 1,
         "regex": "^(?!.*veth|all|tap).*$",
@@ -2651,7 +2669,13 @@
         "includeAll": false,
         "label": "IOT Inteface",
         "name": "iot_interface",
-        "options": [],
+        "options": [
+          {
+            "selected": true,
+            "value": "/^$iot_interface$/",
+            "text": "/^$iot_interface$/"
+          }
+        ],
         "query": "SHOW TAG VALUES FROM \"net\" WITH KEY = \"interface\" WHERE host =~ /$server/",
         "refresh": 1,
         "regex": "^(?!.*veth|all|tap).*$",
