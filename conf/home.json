@@ -2050,11 +2050,7 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "pfsense.kjake.net",
-          "value": "pfsense.kjake.net"
-        },
+        "current": {},
         "datasource": "InfluxDB",
         "definition": "SHOW TAG VALUES FROM system WITH KEY=host",
         "hide": 0,
