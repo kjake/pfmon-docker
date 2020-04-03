@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1585793827360,
+  "iteration": 1585952759090,
   "links": [],
   "panels": [
     {
@@ -78,7 +78,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.1",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "CPU",
@@ -180,7 +180,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.1",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "Ram",
@@ -278,7 +278,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.1",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "Load",
@@ -884,7 +884,7 @@
       }
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
@@ -1286,7 +1286,7 @@
         "justifyMode": "auto",
         "orientation": "horizontal"
       },
-      "pluginVersion": "6.7.1",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "Sesion",
@@ -1632,7 +1632,7 @@
         "justifyMode": "auto",
         "orientation": "auto"
       },
-      "pluginVersion": "6.7.1",
+      "pluginVersion": "6.7.2",
       "targets": [
         {
           "alias": "8.8.8.8",
@@ -2557,6 +2557,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "vmx1",
           "value": "vmx1"
         },
@@ -2583,6 +2584,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "vmx0",
           "value": "vmx0"
         },
@@ -2609,6 +2611,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "vmx0.90",
           "value": "vmx0.90"
         },
@@ -2635,6 +2638,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": true,
           "text": "vmx0.80",
           "value": "vmx0.80"
         },
@@ -2661,7 +2665,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
