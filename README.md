@@ -1,6 +1,6 @@
 ![](https://i.imgur.com/g9usDqJ.png)
 
-#### pfMon - Zero Touch Influx and Grana for pfSense
+#### pfMon - Zero Touch Influx and Grafana for pfSense
 
 This project is a work in progresss, but aims to make it easy to setup InfluxDb and Grafana to show Telegraf stats from a pfSense firewall, including a flexible out-of-the-box dashboard on your Grafana landing page.
 
