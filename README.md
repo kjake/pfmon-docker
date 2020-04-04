@@ -1,4 +1,7 @@
-##### Be kind, WIP
+![](https://i.imgur.com/g9usDqJ.png)
+
+#### pfMon - Zero Touch Influx and Grana for pfSense
+
 This project is a work in progresss, but aims to make it easy to setup InfluxDb and Grafana to show Telegraf stats from a pfSense firewall, including a flexible out-of-the-box dashboard on your Grafana landing page.
 
 1. Deploy Containers (note Grafana port in Example is 4000 and InfluxDb port is 8088, which are different than their defaults)
