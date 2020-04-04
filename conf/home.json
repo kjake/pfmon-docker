@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1585952759090,
+  "iteration": 1585962107797,
   "links": [],
   "panels": [
     {
@@ -940,12 +940,13 @@
       "ignoreEscapeKey": false,
       "ignoreInvalidGeohashValues": false,
       "initialZoom": 1,
+      "interval": "",
       "legendContainerSelector": null,
       "locationData": "countries",
       "mapCenter": "(0°, 0°)",
       "mapCenterLatitude": 0,
       "mapCenterLongitude": 0,
-      "mapFitData": false,
+      "mapFitData": true,
       "mapZoomByRadius": null,
       "maxDataPoints": 1,
       "maximumZoom": null,
@@ -963,7 +964,7 @@
       },
       "targets": [
         {
-          "alias": "$tag_GeoIP",
+          "alias": "[[tag_GeoIP]]",
           "groupBy": [
             {
               "params": [
@@ -973,32 +974,37 @@
             },
             {
               "params": [
-                "null"
+                "GeoIP"
               ],
-              "type": "fill"
+              "type": "tag"
             }
           ],
+          "measurement": "ip_block_log",
           "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT count(\"action\") FROM \"ip_block_log\"  GROUP BY \"GeoIP\"",
-          "rawQuery": true,
-          "refId": "A",
+          "policy": "autogen",
+          "refId": "B",
           "resultFormat": "time_series",
           "select": [
             [
               {
                 "params": [
-                  "value"
+                  "action"
                 ],
                 "type": "field"
               },
               {
                 "params": [],
-                "type": "mean"
+                "type": "count"
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=~",
+              "value": "/^$server$/"
+            }
+          ]
         }
       ],
       "thresholds": "1,5",
