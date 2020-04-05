@@ -7,7 +7,7 @@ This project is a work in progresss, but aims to make it easy to setup InfluxDb 
 1. Deploy Containers (note Grafana port in Example is 4000 and InfluxDb port is 8088, which are different than their defaults)
 1. From pfSense, install Telegraf on your pfSense firewall from the built-in package manager (only tested on 2.4.x)
 1. From pfSense > Diagnostics > Command Prompt, Upload `gateways.py` from https://gist.github.com/fastjack/a0feb792a9655da7aa3e2a7a1d9f812f
-1. From pfSense > Diagnostics > Command Prompt, Execute Shell Command `mv /tmp/gateways.py /usr/local/bin/gateways.py`
+1. From pfSense > Diagnostics > Command Prompt, Execute Shell Commands `mv /tmp/gateways.py /usr/local/bin/gateways.py` and `chmod +x /usr/local/bin/gateways.py`
 1. Configure Telegraf to send data to your InfluxDb instance
    1. Enable Telegraf
    1. In Server, enter `http://dockerhost:port` for your InfluxDb container 
