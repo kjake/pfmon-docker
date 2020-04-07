@@ -1,11 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -e
 
-if [ -z "/usr/share/grafana/public/dashboards/home.json" ]; then
-  cp /home/grafana/template.json /usr/share/grafana/public/dashboards/home.json
-fi
+chown -R 472:472 /var/lib/grafana
 
-if [ -z "/var/lib/grafana/grafana.db" ]; then
+if [ ! -f "/var/lib/grafana/grafana.db" ]; then
   cp /home/grafana/template.db /var/lib/grafana/grafana.db
 fi
 

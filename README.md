@@ -58,7 +58,7 @@ services:
     networks:
       - default
     volumes:
-      - /mnt/nas/jails/pfmon/influxdb:/var/lib/influxdb
+      - ./influxdb:/var/lib/influxdb
     environment:
       - INFLUXDB_ADMIN_USER=admin
       - INFLUXDB_ADMIN_PASSWORD=password
@@ -72,14 +72,14 @@ services:
     networks:
       - default
     volumes:
-      - /mnt/nas/jails/pfmon/config:/var/lib/grafana
+      - ./config:/var/lib/grafana
     user: "472"
     environment:
       - GF_INSTALL_PLUGINS=https://packages.hiveeyes.org/grafana/grafana-map-panel/grafana-map-panel-0.9.0.zip;grafana-map-panel
       - GF_SERVER_ROOT_URL=http://localhost
       - GF_SERVER_HTTP_PORT=3000
       - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Editor
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
 #      - GF_SERVER_CERT_FILE=/tmp/crt
 #      - GF_SERVER_CERT_KEY=/tmp/key
 #      - GF_SERVER_PROTOCOL=https
