@@ -2,11 +2,11 @@
 set -e
 
 if [ -z "/usr/share/grafana/public/dashboards/home.json" ]; then
-  cp /tmp/template.json /usr/share/grafana/public/dashboards/home.json
+  cp /home/grafana/template.json /usr/share/grafana/public/dashboards/home.json
 fi
 
-if [ -z "/usr/share/grafana/public/dashboards/home.json" ]; then
-  cp /tmp/template.db /var/lib/grafana/grafana.db
+if [ -z "/var/lib/grafana/grafana.db" ]; then
+  cp /home/grafana/template.db /var/lib/grafana/grafana.db
 fi
 
 exec /run.sh
