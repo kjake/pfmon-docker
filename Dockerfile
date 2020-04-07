@@ -4,15 +4,12 @@ MAINTAINER kjake
 USER root
 
 ADD conf/grafana.db /var/lib/grafana/grafana.db
+ADD conf/grafana.db /tmp/template.db
 ADD conf/home.json /usr/share/grafana/public/dashboards/home.json
+ADD conf/home.json /tmp/template.json
 
-RUN grafana-cli \
-  --homepath=/usr/share/grafana \
-  --config=/etc/grafana/grafana.ini \
-  --pluginUrl https://packages.hiveeyes.org/grafana/grafana-map-panel/grafana-map-panel-0.9.0.zip \
-  plugins install grafana-map-panel && \
-  chown -R 472:472 /var/lib/grafana
+COPY docker-entrypoint /
+ENTRYPOINT ["/docker-entrypoint"]
 
 USER grafana
-
-ENTRYPOINT ["/run.sh"]
+CMD ["/run.sh"]

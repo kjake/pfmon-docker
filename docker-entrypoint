@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -e
+
+if [ -z "$TZ" ]; then
+  cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+fi
+
+
+if [ -z "/usr/share/grafana/public/dashboards/home.json" ]; then
+  cp /tmp/template.json /usr/share/grafana/public/dashboards/home.json
+fi
+
+if [ -z "/usr/share/grafana/public/dashboards/home.json" ]; then
+  cp /tmp/template.db /var/lib/grafana/grafana.db
+fi
+
+chown -R 472:472 /var/lib/grafana
