@@ -9,5 +9,4 @@ if [ -z "/usr/share/grafana/public/dashboards/home.json" ]; then
   cp /tmp/template.db /var/lib/grafana/grafana.db
 fi
 
-chown -R 472:472 /var/lib/grafana
 exec /run.sh

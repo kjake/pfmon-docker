@@ -7,9 +7,10 @@ ADD conf/grafana.db /var/lib/grafana/grafana.db
 ADD conf/grafana.db /tmp/template.db
 ADD conf/home.json /usr/share/grafana/public/dashboards/home.json
 ADD conf/home.json /tmp/template.json
-
+RUN chown -R 472:472 /var/lib/grafana
 COPY docker-entrypoint /
 USER grafana
-ENTRYPOINT ["/docker-entrypoint"]
+CMD ["/docker-entrypoint"]
+#ENTRYPOINT ["/docker-entrypoint"]
 
 #CMD ["/run.sh"]
