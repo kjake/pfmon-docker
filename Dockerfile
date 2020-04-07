@@ -3,7 +3,7 @@ MAINTAINER kjake
 
 USER root
 
-ADD conf/grafana.db /home/grafana/template.db
-ADD conf/home.json /usr/share/grafana/public/dashboards/home.json
+COPY conf/grafana.db /home/grafana/template.db
+COPY conf/home.json /usr/share/grafana/public/dashboards/
 COPY docker-entrypoint /
 ENTRYPOINT ["/docker-entrypoint"]
