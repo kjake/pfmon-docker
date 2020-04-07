@@ -9,7 +9,7 @@ ADD conf/home.json /usr/share/grafana/public/dashboards/home.json
 ADD conf/home.json /tmp/template.json
 
 COPY docker-entrypoint /
+USER grafana
 ENTRYPOINT ["/docker-entrypoint"]
 
-USER grafana
-CMD ["/run.sh"]
+#CMD ["/run.sh"]
