@@ -1,0 +1,27 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  # TODO: Change variable to your image's name.
+  IMAGE_NAME: kjake/pfmon-docker
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME:latest
+
+      - name: Log into registry
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      - name: Push image
+        run: |
+          docker image push $IMAGE_NAME:latest
