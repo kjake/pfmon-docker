@@ -1,6 +1,8 @@
 ![](https://i.imgur.com/g9usDqJ.png)
 
-#### pfMon - Zero Touch Influx and Grafana for pfSense
+## pfMon - Zero Touch Influx and Grafana for pfSense
+
+### Note: The default login for this installation of Grafana is: admin:password
 
 This project is a work in progresss, but aims to make it easy to setup InfluxDb and Grafana to show Telegraf stats from a pfSense firewall, including a flexible out-of-the-box dashboard on your Grafana landing page.
 
@@ -73,9 +75,9 @@ services:
       - default
     volumes:
       - ./config:/var/lib/grafana
-    user: "472"
     environment:
-      - GF_INSTALL_PLUGINS=https://packages.hiveeyes.org/grafana/grafana-map-panel/grafana-map-panel-0.9.0.zip;grafana-map-panel
+      - GF_INSTALL_PLUGINS=https://github.com/panodata/panodata-map-panel/releases/download/0.16.0/panodata-map-panel-0.16.0.zip;panodata-map-panel
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=panodata-map-panel
       - GF_SERVER_ROOT_URL=http://localhost
       - GF_SERVER_HTTP_PORT=3000
       - GF_AUTH_ANONYMOUS_ENABLED=true
