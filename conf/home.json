@@ -1011,7 +1011,7 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "Blocked Connections",
-      "type": "grafana-map-panel",
+      "type": "panodata-map-panel",
       "unitPlural": "",
       "unitSingle": "",
       "unitSingular": "",

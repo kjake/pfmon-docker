@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-chown -R 472:472 /var/lib/grafana
-
 if [ ! -f "/var/lib/grafana/grafana.db" ]; then
   cp /home/grafana/template.db /var/lib/grafana/grafana.db
 fi
