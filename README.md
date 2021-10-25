@@ -50,9 +50,14 @@ Example Telegraf input for reading pfBlockerNG logs and sending additional gatew
 Example `docker-compose.yml`:
 ```json
 version: '2'
+
+volumes:
+  pfmon_influxdb:
+  pfmon_config:
+
 services:
   db:
-    image: influxdb
+    image: influxdb:1.8
     container_name: influxdb-pfmon
     restart: always
     ports:
@@ -60,7 +65,7 @@ services:
     networks:
       - default
     volumes:
-      - ./influxdb:/var/lib/influxdb
+      - pfmon_influxdb:/var/lib/influxdb
     environment:
       - INFLUXDB_ADMIN_USER=admin
       - INFLUXDB_ADMIN_PASSWORD=password
@@ -74,7 +79,7 @@ services:
     networks:
       - default
     volumes:
-      - ./config:/var/lib/grafana
+      - pfmon_config:/var/lib/grafana
     environment:
       - GF_INSTALL_PLUGINS=https://github.com/panodata/panodata-map-panel/releases/download/0.16.0/panodata-map-panel-0.16.0.zip;panodata-map-panel
       - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=panodata-map-panel
