@@ -6,7 +6,7 @@ volumes:
 
 services:
   db:
-    image: influxdb:1.8
+    image: influxdb:1.8.10
     container_name: influxdb-pfmon
     restart: always
     ports:
