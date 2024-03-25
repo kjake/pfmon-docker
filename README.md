@@ -21,7 +21,7 @@ This project is a work in progresss, but aims to make it easy to setup InfluxDb 
 
 
 Example Telegraf input for reading pfBlockerNG logs and sending additional gateway info:
-```
+```toml
 [[inputs.exec]]
         commands = ["/usr/local/bin/gateways.py"]
         timeout = "5s"
@@ -48,7 +48,7 @@ Example Telegraf input for reading pfBlockerNG logs and sending additional gatew
 
 
 Example `docker-compose.yml`:
-```json
+```yaml
 version: '2'
 
 volumes:
