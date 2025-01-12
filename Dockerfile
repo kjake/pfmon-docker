@@ -1,5 +1,5 @@
 FROM grafana/grafana
-MAINTAINER kjake
+LABEL maintainer="kjake"
 
 USER root
 
